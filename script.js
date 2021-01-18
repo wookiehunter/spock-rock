@@ -32,129 +32,128 @@ let playerScoreNumber = 0;
 let computerScoreNumber = 0;
 let computerChoice = '';
 
-// Reset all 'selected' icons, remove confetti
+// reset selected icons
 function resetSelected() {
   allGameIcons.forEach((icon) => {
-    icon.classList.remove('selected');
-  });
-  stopConfetti();
-  removeConfetti();
+    icon.classList.remove('selected')
+  })
+  stopConfetti()
+  removeConfetti()
 }
+window.resetAll = resetAll
 
-// Reset score & playerChoice/computerChoice
+// reset the game
 function resetAll() {
-  playerScoreNumber = 0;
-  computerScoreNumber = 0;
-  playerScoreEl.textContent = playerScoreNumber;
-  computerScoreEl.textContent = computerScoreNumber;
-  playerChoiceEl.textContent = '';
-  computerChoiceEl.textContent = '';
-  resultText.textContent = '';
-  resetSelected();
+  playerScoreNumber = 0
+  computerScoreNumber = 0
+  playerScoreEl.textContent = playerScoreNumber
+  computerScoreEl.textContent = computerScoreNumber
+  playerChoiceEl.textContent = ''
+  computerChoiceEl.textContent = ''
+  resultText.textContent = ''
+  resetSelected()
 }
-window.resetAll = resetAll;
 
-// Random computer choice
+// computers random choice
 function computerRandomChoice() {
-  const computerChoiceNumber = Math.random();
-  if (computerChoiceNumber < 0.2) {
-    computerChoice = 'rock';
-  } else if (computerChoiceNumber <= 0.4) {
-    computerChoice = 'paper';
-  } else if (computerChoiceNumber <= 0.6) {
-    computerChoice = 'scissors';
-  } else if (computerChoiceNumber <= 0.8) {
-    computerChoice = 'lizard';
+  const computerChoiceNumber = Math.random()
+  if(computerChoiceNumber < 0.2) {
+    computerChoice = 'rock'
+  } else if(computerChoiceNumber <= 0.4) {
+    computerChoice = 'paper'
+  } else if(computerChoiceNumber <= 0.6) {
+    computerChoice = 'scissors'
+  } else if(computerChoiceNumber <= 0.8) {
+    computerChoice = 'lizard'
   } else {
-    computerChoice = 'spock';
+    computerChoice = 'spock'
   }
 }
 
-// Add 'selected' styling & computerChoice
+// add 'selected' styling and computers choice
 function displayComputerChoice() {
   switch (computerChoice) {
     case 'rock':
-      computerRock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Rock';
-      break;
+      computerRock.classList.add('selected')
+      computerChoiceEl.textContent = ' --- Rock'
+      break
     case 'paper':
-      computerPaper.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Paper';
-      break;
+      computerPaper.classList.add('selected')
+      computerChoiceEl.textContent = ' --- Paper'
+      break
     case 'scissors':
-      computerScissors.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Scissors';
-      break;
+      computerScissors.classList.add('selected')
+      computerChoiceEl.textContent = ' --- Scissors'
+      break
     case 'lizard':
-      computerLizard.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Lizard';
-      break;
+      computerLizard.classList.add('selected')
+      computerChoiceEl.textContent = ' --- Lizard'
+      break
     case 'spock':
-      computerSpock.classList.add('selected');
-      computerChoiceEl.textContent = ' --- Spock';
-      break;
+      computerSpock.classList.add('selected')
+      computerChoiceEl.textContent = ' --- Spock'
+      break
     default:
-      break;
+      break
   }
 }
 
-// Check result, increase scores, update resultText
+// udate the score
 function updateScore(playerChoice) {
-  if (playerChoice === computerChoice) {
-    resultText.textContent = "It's a tie.";
+  if(playerChoice === computerChoice) {
+    resultText.textContent = "It's a tie!"
   } else {
-    const choice = choices[playerChoice];
-    if (choice.defeats.indexOf(computerChoice) > -1) {
-      startConfetti();
-      resultText.textContent = 'You Won!';
-      playerScoreNumber++;
-      playerScoreEl.textContent = playerScoreNumber;
+    const choice = choices[playerChoice]
+    console.log(choice.defeats.indexOf(computerChoice))
+    if(choice.defeats.indexOf(computerChoice) > -1) {
+      startConfetti()
+      resultText.textContent = 'You Won!'
+      playerScoreNumber++
+      playerScoreEl.textContent = playerScoreNumber
     } else {
-      resultText.textContent = 'You Lost!';
-      computerScoreNumber++;
-      computerScoreEl.textContent = computerScoreNumber;
+      resultText.textContent = 'You Lost!'
+      computerScoreNumber++
+      computerScoreEl.textContent = computerScoreNumber
     }
   }
 }
 
-// Call functions to process turn
+// call functions to process the turn
 function checkResult(playerChoice) {
-  resetSelected();
-  computerRandomChoice();
-  displayComputerChoice();
-  updateScore(playerChoice);
+  resetSelected()
+  computerRandomChoice()
+  displayComputerChoice()
+  updateScore(playerChoice)
 }
 
-// Passing player selection value and styling icons
 function select(playerChoice) {
-  checkResult(playerChoice);
-  // Add 'selected' styling & playerChoice
+  checkResult(playerChoice)
   switch (playerChoice) {
     case 'rock':
-      playerRock.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Rock';
-      break;
+      playerRock.classList.add('selected')
+      playerChoiceEl.textContent = ' --- Rock'
+      break
     case 'paper':
-      playerPaper.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Paper';
-      break;
+      playerPaper.classList.add('selected')
+      playerChoiceEl.textContent = ' --- Paper'
+      break
     case 'scissors':
-      playerScissors.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Scissors';
-      break;
+      playerScissors.classList.add('selected')
+      playerChoiceEl.textContent = ' --- Scissors'
+      break
     case 'lizard':
-      playerLizard.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Lizard';
-      break;
+      playerLizard.classList.add('selected')
+      playerChoiceEl.textContent = ' --- Lizard'
+      break
     case 'spock':
-      playerSpock.classList.add('selected');
-      playerChoiceEl.textContent = ' --- Spock';
-      break;
+      playerSpock.classList.add('selected')
+      playerChoiceEl.textContent = ' --- Spock'
+      break
     default:
-      break;
+      break
   }
 }
-window.select = select;
+window.select = select
 
-// On startup, set initial values
-resetAll();
+// on page load
+resetAll()
