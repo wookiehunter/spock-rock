@@ -7,7 +7,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: whitesmoke;
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: Roboto, sans-serif;
   letter-spacing: 1px;
   display: flex;
@@ -35,6 +37,7 @@ body {
 h1 {
   color: white;
   font-size: 30px;
+  text-align: center;
 }
 
 .player-container {
@@ -89,6 +92,28 @@ h2 {
   margin-top: 20px;
 }
 
+.xenos {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.xenos h6 {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.xenos h6 a {
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.xenos h6 a:hover {
+  font-size: 1.1rem;
+}
+
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
   .game-container {
@@ -130,6 +155,7 @@ h2 {
 
   .far {
     font-size: 43px;
+    margin-right: 19px;
   }
 
   .reset-icon {
